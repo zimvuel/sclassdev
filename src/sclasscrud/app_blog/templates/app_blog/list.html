@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Blog</title>
+</head>
+<body>
+    <h1>Register Blog</h1>
+    <a href="/blog/create/">Create New Post</a>
+    <hr>
+
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="/blog/read/{{ post.id }}/">{{ post.title }}</a> - {{ post.content }}
+                    <a href="{% url 'blog_update' post.id %}">Edit</a>
+                    <a href="{% url 'blog_delete' post.id %}" onclick="return confirm('Yakin mau hapus?')">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Posts Found.</p>
+    {% endif %}
+
+</body>
+</html>
